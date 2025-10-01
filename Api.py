@@ -27,7 +27,7 @@ def generate_stream(prompt):
     los chunks de la respuesta a medida que llegan.
     """
     # El modelo se inicializa de esta forma en las versiones más recientes
-    model = genai.GenerativeModel("gemini-1.5-flash-latest")
+    model = genai.GenerativeModel("gemini-2.5-pro")#gemini-2.5-pro  gemini-2.5-flash
     # Llama a la API y va produciendo cada fragmento de la respuesta
     # La estructura para generar contenido también ha sido simplificada
     for chunk in model.generate_content(
