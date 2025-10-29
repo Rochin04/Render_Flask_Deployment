@@ -45,6 +45,8 @@ def handle_generation():
     Endpoint de la API que recibe una pregunta (prompt) y devuelve
     la respuesta de Gemini como un stream.
     """
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'ok'}), 200
     # Verificar que la petición sea de tipo JSON
     if not request.is_json:
         return jsonify({"error": "La petición debe ser de tipo JSON"}), 400
