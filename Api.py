@@ -1,5 +1,6 @@
 import os
 from flask import Flask, Response, request, jsonify
+from flask_cors import CORS
 # Se recomienda importar google.generativeai directamente
 import google.generativeai as genai
 from google.generativeai import types
@@ -10,6 +11,7 @@ load_dotenv()
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
+CORS(app)
 
 # --- CORRECCIÓN AQUÍ ---
 # Configurar el cliente de GenAI usando la clave de la variable de entorno
@@ -37,7 +39,7 @@ def generate_stream(prompt):
         if chunk.text:
             yield chunk.text
 
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST', 'OPTIONS'])
 def handle_generation():
     """
     Endpoint de la API que recibe una pregunta (prompt) y devuelve
